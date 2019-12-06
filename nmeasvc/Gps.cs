@@ -63,8 +63,14 @@ namespace nmeasvc
 
         public void Reboot()
         {
+            var watcher2 = watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
+            watcher2.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(OnGpsPos);
+            watcher2.StatusChanged += new EventHandler<GeoPositionStatusChangedEventArgs>(OnGpsStatus);
+            watcher2.Start();
+
             Destroy();
-            Setup();
+
+            watcher = watcher2;
         }
 
         public Location GetLocation()

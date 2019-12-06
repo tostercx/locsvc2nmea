@@ -76,7 +76,7 @@ namespace nmeasvc
 
                             if (lastTime != updateTime)
                                 updateTime = lastTime;
-                            else if ((DateTime.Now - updateTime).TotalSeconds > 5 * 60) // reboot if no updates
+                            else if ((DateTime.Now - updateTime).TotalSeconds > 15) // reboot if no updates
                                 gps.Reboot();
 
                             gpsPort.Write(gps.GetNmea());
